@@ -1,11 +1,14 @@
 import web
-from poll.settings import TEMPLATES
+from graph.settings import TEMPLATES
 
 class View(object):
     def render(self, result):
         render = web.template.render(TEMPLATES)
         page = getattr(render, self.__class__.__name__.lower())
         return render.base(page(**result))  
+
+    def get(self, *args, **kwargs):
+        pass
 
     def GET(self, *args, **kwargs):
         result = self.get(*args, **kwargs)
