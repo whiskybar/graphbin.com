@@ -1,9 +1,28 @@
 $def with (array)
 
 $var title: graph.it - chart
+$var head:
+    <script type="text/javascript">
+        var chart1; // globally available
+        $$(document).ready(function() {
+          chart1 = new Highcharts.Chart({
+             chart: {
+                renderTo: 'chart'
+             },
+             title: {
+                text: 'Values'
+             },
+             series: [{
+                data: $array
+             }]
+          });
+       });
+       </script>
 
 <h1>Your chart</h1>
 
 <pre>
     $array
 </pre>
+
+<div id="chart" style="width: 100%; height: 400px"></div>
