@@ -1,6 +1,6 @@
 import re
 import json
-from cStringIO import StringIO
+from StringIO import StringIO
 from tempfile import NamedTemporaryFile
 from os.path import basename
 
