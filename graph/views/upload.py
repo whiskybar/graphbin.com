@@ -1,5 +1,6 @@
 import re
 import json
+from cStringIO import StringIO
 from tempfile import NamedTemporaryFile
 from os.path import basename
 
@@ -26,7 +27,11 @@ class Create(View):
                 continue
 
     def post(self):
+        try:
+            data_file = web.input(csvfile={})['csvfile'].file
+        except AttributeError:
+            data_file = StringIO(web.input(data='')['data'])
         with NamedTemporaryFile(prefix='', dir=UPLOADS, delete=False) as f:
-            json.dump(list(self.process_input(web.input(csvfile={})['csvfile'].file)), f)
+            json.dump(list(self.process_input(data_file)), f)
         return '/%s/' % basename(f.name)
 
