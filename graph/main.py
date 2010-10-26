@@ -9,6 +9,7 @@ urls = (
 )
 
 app = web.application(urls, globals(), autoreload=True)
+application = app.wsgifunc()
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == 'serve':
