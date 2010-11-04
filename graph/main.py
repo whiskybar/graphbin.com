@@ -12,12 +12,5 @@ app = web.application(urls, globals(), autoreload=True)
 application = app.wsgifunc()
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == 'serve':
-        from flup.server.fcgi import WSGIServer
-        WSGIServer(
-            application=app.wsgifunc(),
-            bindAddress='/tmp/graph.socket',
-        ).run()
-    else:
-        app.run()
+    app.run()
 
